@@ -131,6 +131,11 @@ namespace InventoryManagementSystem
                 Console.WriteLine($"Permission denied. {ex.Message}");
                 _log = new List<T>();
             }
+            catch(IOException ex)
+            {
+                Console.WriteLine($"IO error occured: {ex.Message}");
+                _log = new List<T>();
+            }
             catch (JsonException ex)
             {
                 Console.WriteLine($"Error converting from Json: {ex.Message}");
