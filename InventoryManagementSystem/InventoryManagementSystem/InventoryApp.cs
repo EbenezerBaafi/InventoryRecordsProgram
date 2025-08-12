@@ -19,9 +19,9 @@ namespace InventoryManagementSystem
         public void SeedSampleData()
         {
             // Create sample inventory items
-            var item1 = new InventoryItem(1, "Laptop", 10, new DateTime(2025,01,22));
-            var item2 = new InventoryItem(2, "Smartphone", 20, new DateTime(2025,01,23));
-            var item3 = new InventoryItem(3, "Tablet", 15, new DateTime(2025,01,24));
+            var item1 = new InventoryItem(1, "Laptop", 10, new DateTime(2025, 01, 22));
+            var item2 = new InventoryItem(2, "Smartphone", 20, new DateTime(2025, 01, 23));
+            var item3 = new InventoryItem(3, "Tablet", 15, new DateTime(2025, 01, 24));
             // Add items to the logger
             _logger.Add(item1);
             _logger.Add(item2);
@@ -52,6 +52,26 @@ namespace InventoryManagementSystem
                     Console.WriteLine($"Id: {item.Id}, Name: {item.Name}, Quantity: {item.Quantity}, Date Added: {item.DateAdded}");
                 }
             }
+        }
+
+        public void PrintAllItems()
+        {
+            // Print each item from loaded data
+            var items = _logger.GetAll();
+            foreach (var item in items)
+            {
+                Console.WriteLine($"Id: {item.Id}, Name: {item.Name}, Quantity: {item.Quantity}, Date Added: {item.DateAdded}");
+            }
+
+            if (items.Count == 0)
+            {
+                Console.WriteLine("No items to display");
+            }
+            else
+            {
+                Console.WriteLine("All items printed successfully");
+            }
+
         }
     }
 }
