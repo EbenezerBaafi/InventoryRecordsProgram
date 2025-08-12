@@ -35,5 +35,23 @@ namespace InventoryManagementSystem
             _logger.SaveToFile();
             Console.WriteLine("Data saved to file");
         }
+
+        public void LoadData()
+        {
+            // Load the inventory log from file
+            var items = _logger.GetAll();
+            if (items.Count == 0)
+            {
+                Console.WriteLine("No items found in the log");
+            }
+            else
+            {
+                Console.WriteLine("Items loaded from log:");
+                foreach (var item in items)
+                {
+                    Console.WriteLine($"Id: {item.Id}, Name: {item.Name}, Quantity: {item.Quantity}, Date Added: {item.DateAdded}");
+                }
+            }
+        }
     }
 }
