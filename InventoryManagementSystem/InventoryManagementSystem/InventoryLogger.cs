@@ -91,7 +91,13 @@ namespace InventoryManagementSystem
                     return;
                 }
                 // Read json string from file
-                string fileContent = File.ReadAllText(_filePath);
+                string fileContent = "";
+
+                // Read the file using StreamReader with using statement
+                using (StreamReader sr = new StreamReader(_filePath))
+                {
+                    fileContent = sr.ReadToEnd();
+                }
 
                 // Check if file is empty
                 if (string.IsNullOrWhiteSpace(fileContent))
