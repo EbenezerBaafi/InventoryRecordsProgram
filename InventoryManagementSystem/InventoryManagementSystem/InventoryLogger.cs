@@ -80,7 +80,62 @@ namespace InventoryManagementSystem
 
         }
 
+        public void LoadFrmoFile()
+        {
+            try
+            {
+                if (!File.Exists(_filePath))
+                {
+                    Console.WriteLine($"File not found: {_filePath}, Starting with empty log.");
+                    _log = new List<T>();
+                    return;
+                }
+                // Read json string from file
+                string fileContent = File.ReadAllText(_filePath);
 
+                // Check if file is empty
+                if (string.IsNullOrWhiteSpace(fileContent))
+                {
+                    Console.WriteLine("File is empty, starting with empty log.");
+                    _log = new List<T>();
+                    return;
+                }
+                // Deserialize json string to list of T
+                List<T>? loadedItems = JsonSerializer.Deserialize<List<T>>(fileContent);
+
+                // Handle null case
+                if (loadedItems == null)
+                {
+                    Console.WriteLine("Failed to load data, starting with empty log.");
+                    _log = new List<T>();
+                    return;
+                }
+                // Assign loaded items to _log
+                _log = loadedItems;
+                Console.WriteLine($"Successfully loaded {_log.Count} items from {_filePath}");
+
+            }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine($"File not found. {ex.Message}");
+                _log = new List<T>();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                Console.WriteLine($"Permission denied. {ex.Message}");
+                _log = new List<T>();
+            }
+            catch (JsonException ex)
+            {
+                Console.WriteLine($"Error converting from Json: {ex.Message}");
+                _log = new List<T>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unexpected error occured: {ex.Message}");
+                _log = new List<T>();
+            }
+        }
 
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSystem
 {
-    public record InventoryItem
+    public record InventoryItem : IInventoryEntity
     {
         #region fields
         public int Id { get; init; }

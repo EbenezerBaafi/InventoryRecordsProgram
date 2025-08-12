@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSystem
 {
-    internal interface IInventoryEntity
+    public interface IInventoryEntity
     {
+        int Id { get; }
     }
 }
