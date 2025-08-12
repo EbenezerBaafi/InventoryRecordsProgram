@@ -13,7 +13,7 @@ namespace InventoryManagementSystem
         public InventoryApp(string logFilePath)
         {
             _logger = new InventoryLogger<InventoryItem>(logFilePath);
-            Console.WriteLine("Inventory application initialized");
+            Console.WriteLine("Inventory application initialized\n");
         }
 
         public void SeedSampleData()
@@ -26,14 +26,14 @@ namespace InventoryManagementSystem
             _logger.Add(item1);
             _logger.Add(item2);
             _logger.Add(item3);
-            Console.WriteLine("Sample data seeded");
+            Console.WriteLine("Sample data seeded\n");
         }
 
         public void SaveData()
         {
             // Save the inventory log to file
             _logger.SaveToFile();
-            Console.WriteLine("Data saved to file");
+            Console.WriteLine("Data saved to file\n");
         }
 
         public void LoadData()
@@ -46,7 +46,7 @@ namespace InventoryManagementSystem
             }
             else
             {
-                Console.WriteLine("Items loaded from log:");
+                Console.WriteLine("Items loaded from log:\n");
                 foreach (var item in items)
                 {
                     Console.WriteLine($"Id: {item.Id}, Name: {item.Name}, Quantity: {item.Quantity}, Date Added: {item.DateAdded}");
