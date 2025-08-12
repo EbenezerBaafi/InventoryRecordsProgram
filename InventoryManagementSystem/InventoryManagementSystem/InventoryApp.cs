@@ -28,5 +28,12 @@ namespace InventoryManagementSystem
             _logger.Add(item3);
             Console.WriteLine("Sample data seeded");
         }
+
+        public void SaveData()
+        {
+            // Save the inventory log to file
+            _logger.SaveToFile();
+            Console.WriteLine("Data saved to file");
+        }
     }
 }
